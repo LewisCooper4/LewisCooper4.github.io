@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Trade Intranet</title>
+    <link rel="shortcut icon" href="css/images/LC Logo.ico"/>
+
+    <script src="https://kit.fontawesome.com/244be7b2d8.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/wordle.css"/>
+
+    <script src="js/libs/angular1.5.7.min.js"></script>
+    <script src="js/libs/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="js/libs/jquery.min.js"></script>
+    <!-- <script src="css/libs/bootstrap/js/bootstrap.min.js"></script> -->
+
+    <!-- main application script -->
+    <script src="js/wordle.module.js"></script>
+
+
+    <!-- Worlde -->
+    <script src="modules/wordle/letter/letter.controller.js"></script>
+    <script src="modules/wordle/letter/letter.directive.js"></script>
+
+    <!-- Constants -->
+    <script src="js/constants.js"></script>
+
+    <!-- intranet controller -->
+    <script src="js/wordle.controller.js"></script>
+
+</head>
+
+<body ng-app="app" ng-controller="WordleController as wordle">
+
+<!-- <div ui-view></div> -->
+
+<h1 class="center">WORDLE</h1>
+
+<div class="container-fluid">
+    
+    <div class="row-fluid center">
+        <div class="span4">
+            &nbsp;
+            {{ wordle.currentWord }}
+        </div>
+
+        <div class="span4">
+            <div class="row-fluid letterRow" style="margin-bottom: 5px;" 
+                 ng-repeat="x in [].constructor(wordle.totalGuesses) track by $index"
+                 ng-init="wordle.guessIndex = $index">
+
+                <div class="span1 guessNumber">
+                    #{{ $index + 1 }}
+                </div>
+
+                <div class="span2 letterSquare"
+                     ng-repeat="y in [].constructor(wordle.totalLetters) track by $index"
+                     ng-color="wordle.guessesResults[$parent.$index][$index]"
+                     ng-style="{ 'background-color' : wordle.getLetterColor(wordle.guessesResults[$parent.$index][$index])}">
+                    <word-letter>
+                        {{ wordle.guesses[$parent.$index][$index] | uppercase }}
+                    </word-letter>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="span2">
+            &nbsp;
+        </div>
+    </div>
+    
+    <form class="form-horizontal" ng-submit="wordle.submitGuess()">
+        <div class="control-group">
+            <div class="span2">&nbsp;</div>
+            
+            <input class="form-control span=3" type="text" maxlength="{{wordle.totalLetters}}" ng-model="wordle.guessInput" ng-change="wordle.changeGuess()" />
+            <button type="submit" class="btn btn-primary">Submit Guess</button>
+            
+            <div class="span4">&nbsp;</div>
+        </div>
+    </form>
+    
+    <div class="row-fluid center" ng-show="wordle.gameOver()">
+        <h2>{{wordle.word}}</h2>
+    </div>
+</div>
+
+</body>
+
+</html>

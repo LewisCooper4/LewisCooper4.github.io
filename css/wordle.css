@@ -1,0 +1,29 @@
+
+
+.center {
+	text-align: center;
+}
+
+
+.letterRow {
+    border: 1px solid rgb(0, 0, 0);
+    padding: 5px;
+}
+
+.letterSquare {
+    border: 1px solid rgb(0, 0, 0);
+    width: 25%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+.guessNumber {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
