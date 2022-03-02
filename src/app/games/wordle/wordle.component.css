@@ -1,0 +1,29 @@
+.guessesTable {
+    text-align: center;
+    border-collapse:separate;
+    border-spacing:0 15px;
+}
+
+.guessedLetter {
+    display: inline-block;
+    border: 1px black solid;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.guessesLetterRow {
+    margin-bottom: 10px;
+}
+
+.guessRow {
+    margin-bottom: 20px;
+}
+
+.tableLetter {
+    border: 1px black solid;
+    margin: 5px;
+    padding: 10px;
+    height: 42px;
+    width: 20%;
+}
